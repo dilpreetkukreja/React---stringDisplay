@@ -5,15 +5,12 @@ import CharComponent from './components/CharComponent';
 
 class App extends React.Component {
   state = {
-    length: 0,
     charArr:[]
   }
   changeListener = (event) =>{
     let value = event.target.value;
     let charArr = value.split('');
-    console.log(charArr);
-    console.log(value.length);
-    this.setState({length: value.length, charArr: charArr});
+    this.setState({charArr: charArr});
   }
   deleteHandler = (index) => {
     let copycharArr = [...this.state.charArr];
@@ -21,7 +18,7 @@ class App extends React.Component {
       return ind !== index;
     });
 
-    this.setState({charArr: updatedcharArr, length: this.state.length-1});
+    this.setState({charArr: updatedcharArr});
 
 
   }
@@ -41,8 +38,8 @@ class App extends React.Component {
         onChange = {this.changeListener}
         value = {this.state.charArr.join('')}
        />
-       <p>Length of string is: {this.state.length}</p>
-       <ValidationComponent stringLength = {this.state.length}/>
+       <p>Length of string is: {this.state.charArr.length}</p>
+       <ValidationComponent stringLength = {this.state.charArr.length}/>
        {charArrComponents}
       </div>
   );
